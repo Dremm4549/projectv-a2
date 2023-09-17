@@ -41,6 +41,13 @@ int main(void) {
 	{
 		std::cout << "ERROR: Cant open resource" << std::endl;
 	}
+
+#ifdef _DEBUG
+	for (int i = 0; i < studentVector.size(); i++)
+	{
+		std::cout << studentVector[i].firstName << " " << studentVector[i].lastName << std::endl;
+	}
+#endif
 	return 1;
 }
 
@@ -71,12 +78,12 @@ STUDENT_DATA createStudent(std::string input) {
 
 		if (nameCounter == 0)
 		{
-			student.firstName = parsedString;
+			student.lastName = parsedString;
 		}
 		else if (parsedString[0] == ' ' && nameCounter == 1)
 		{
 			parsedString.erase(parsedString.begin());
-			student.lastName = parsedString;
+			student.firstName = parsedString;
 			nameCounter = 0;
 		}
 		nameCounter++;
