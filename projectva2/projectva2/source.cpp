@@ -12,6 +12,8 @@
 #include <vector>
 #include <sstream>
 
+#define PRE_RELASE
+
 struct STUDENT_DATA {
 	std::string firstName;
 	std::string lastName;
@@ -20,12 +22,21 @@ struct STUDENT_DATA {
 STUDENT_DATA createStudent(std::string line);
 
 int main(void) {
+#ifdef PRE_RELASE
+	std::cout << "Running Pre-Relase source code" << std::endl;
+#else
+	std::cout << "Running standard release source code" << std::endl;
+#endif // PRE_RELASE
 
 	std::vector<STUDENT_DATA> studentVector;
 	STUDENT_DATA studentObj;
 	std::ifstream ifs;
 
+#ifdef PRE_RELASE
+	ifs.open("../StudentData_Emails.txt", std::ifstream::in);
+#else
 	ifs.open("../StudentData.txt", std::ifstream::in);
+#endif 
 
 	if (ifs.is_open()) {
 		std::string studentInfo;
